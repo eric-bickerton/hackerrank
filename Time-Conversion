@@ -1,0 +1,49 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+
+    hh = int(s[:2])
+    mm = s[3:5]
+    ss = s[6:8]
+    ampm = s[8:]
+    if s[8]=="P":
+        if hh == 12:
+            return str(hh)+":"+mm+":"+ss
+        else:
+            hh = (hh+12)%24
+            if hh<10:
+                return "0"+str(hh)+":"+mm+":"+ss
+            else:
+                return str(hh)+":"+mm+":"+ss
+    else:
+        if hh==12:
+            return "00"+":"+mm+":"+ss
+        elif hh<10:
+            return "0"+str(hh)+":"+mm+":"+ss
+        else:
+            str(hh)+":"+mm+":"+ss
+    
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+    
+    fptr.write(result + '\n')
+
+    fptr.close()
